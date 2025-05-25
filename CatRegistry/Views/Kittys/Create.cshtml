@@ -1,5 +1,67 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model CatRegistry.Models.Kittys.KittyCreateViewModel
+
+<div>
+    <form method="post" enctype="multipart/form-data">
+
+
+        <div class="form-group-row">
+            <label asp-for="KittySpeciesName" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="KittySpeciesName" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group-row">
+            <label asp-for="KittyRegionOfOrigin" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="KittyRegionOfOrigin" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group-row">
+            <label asp-for="KittyDescription" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="KittyDescription" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group-row">
+            <label asp-for="Files" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-5">
+                <div class="custom-file">
+                    <input class="form-control custom-file-input"
+                           asp-for="Files"
+                           multiple type="file" />
+                    <label class="custom-file-label">Choose kitty Sprite</label>
+                </div>
+            </div>
+        </div>
+        @{
+            var breakpoint = "";
+        }
+        <input asp-action="create" asp-controller="Kittys" type="submit"
+               class="btn btn-primary form-text" value="Create Kitty"></input>
+
+        <a asp-action="index" class="btn btn-primary">Cancel</a>
+
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function()
+        {
+            $('.custom-file-input').on("change", function () {
+                var fileLabel = $(this).next('.custom-file-input');
+                var files = $(this)[0].files;
+                if (files.length > 1) {
+                    fileLabel.html(files.length + 'files selected');
+                }
+                else if (files.length == 1) {
+                    fileLabel.html(files[0].name);
+                }
+            });
+        });
+    </script>
 }
+
+

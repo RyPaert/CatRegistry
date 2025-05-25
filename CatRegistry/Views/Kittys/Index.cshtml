@@ -1,5 +1,39 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<CatRegistry.Models.Kittys.KittyIndexViewModel>
+
+@{ int rowNumber = 1; }
+<div><a asp-action="Create" asp-controller="Kittys" class="btn btn-primary">Create a new kittys</a></div>
+<div class="h1">Your Cats:</div>
+<form method="post">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Name</th>
+				<th scope="col">Region</th>
+				<th scope="col">Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var character in Model)
+			{
+				<tr>
+					
+					<td>@rowNumber</td>
+					<td>@character.KittySpeciesName</td>
+					<td>@character.KittyRegionOfOrigin</td>
+					<td>@character.KittyDescription</td>
+					<td>
+						<a asp-action="details" asp-controller="Kittys" asp-route-id="@character.KittyId" class="btn btn-info">KittyDetails</a>
+						<br />
+						<a asp-action="update" asp-controller="Kittys" asp-route-id="@character.KittyId" class="btn btn-info">KittyConfigure</a>		
+						<br />
+						<a asp-action="delete" asp-controller="Kittys" asp-route-id="@character.KittyId" class="btn btn-info">KittyDelete</a>
+					</td>
+				</tr>
+				rowNumber++;
+			}
+		</tbody>
+	</table>
+</form>
+
+
