@@ -1,4 +1,4 @@
-﻿@model CatRegistry.Models.Kitty.KittyDeleteViewModel
+﻿@model CatRegistry.Models.Kittys.KittyDeleteViewModel
 
 
 <h1>@Html.DisplayFor(model => model.KittySpeciesName)</h1>
@@ -26,16 +26,16 @@
 
 
         <div class="form-group row">
-            <label asp-for="CatFoodXPNextLevel" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.CatFoodXPNextLevel)
+            <label asp-for="KittyDescription" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.KittyDescription)
         </div>
 
 
     </dl>
-    <form asp-action="DeleteConfirmation">
-        <input type="hidden" asp-for="Id" />
+    <form asp-action="DeleteConfirmation" method="post">
+        <input type="hidden" asp-for="KittyId" name="id" />
         <input type="submit" value="Delete" class="btn btn-danger" />
-        <a asp-action="Index" asp-controller="Kitty" class="btn btn-secondary danger">Back</a>
+        <a asp-action="Index" asp-controller="Kittys" class="btn btn-secondary danger">Back</a>
 
     </form>
 

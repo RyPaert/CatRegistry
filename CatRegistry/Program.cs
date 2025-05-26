@@ -1,7 +1,17 @@
+using CatRegistry.Data;
+using CatRegistry.ServiceInterface;
+using CatRegistry.Services;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IKittyServices, KittyServices>();
+builder.Services.AddScoped<IFileServices, FileServices>();
+builder.Services.AddDbContext<KittyContext>
+    (options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 var app = builder.Build();
 

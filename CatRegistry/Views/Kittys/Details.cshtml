@@ -1,4 +1,4 @@
-﻿@model CatRegistry.Models.Kitty.KittyDetailsViewModel
+﻿@model CatRegistry.Models.Kittys.KittyDetailsViewModel
 
 
 <h1>@Html.DisplayFor(model => model.KittySpeciesName)</h1>
@@ -28,15 +28,8 @@
             <label asp-for="KittyDescription" class="col-sm-2 col-form-label"></label>
             @Html.DisplayFor(model => model.KittyDescription)
         </div>
-
-        <div class="form-group row">
-            <label asp-for="CatFoodXPNextLevel" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.CatFoodXPNextLevel)
-        </div>
-
-
     </dl>
-    <a asp-action="Index" asp-controller="Kitty" class="btn btn-secondary">Back</a>
+    <a asp-action="Index" asp-controller="Kittys" class="btn btn-secondary">Back</a>
 </div>
 
 
