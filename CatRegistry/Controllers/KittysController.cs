@@ -28,6 +28,9 @@ namespace CatRegistry.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            var Name = HttpContext.Session.GetString("Name");
+            ViewBag.Name = Name;    
+
             var resultingInventory = _context.Kittys
                 .OrderByDescending(y => y.KittyDescription)
                 .Select(x => new KittyIndexViewModel

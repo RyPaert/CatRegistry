@@ -1,7 +1,12 @@
 ﻿@model IEnumerable<CatRegistry.Models.Kittys.KittyIndexViewModel>
 
 @{ int rowNumber = 1; }
-<div><a asp-action="Create" asp-controller="Kittys" class="btn btn-primary">Create a new kittys</a></div>
+
+@if (ViewBag.Name == "admin")
+{
+	<div><a asp-action="Create" asp-controller="Kittys" class="btn btn-primary">Create a new kittys</a></div>
+
+}
 <div class="h1">Your Cats:</div>
 <form method="post">
 	<table class="table table-hover">
@@ -23,9 +28,12 @@
 					<td>@character.KittyRegionOfOrigin</td>
 					<td>@character.KittyDescription</td>
 					<td>
-						<a asp-action="details" asp-controller="Kittys" asp-route-id="@character.KittyId" class="btn btn-info">KittyDetails</a>
-						<br />
-						<a asp-action="delete" asp-controller="Kittys" asp-route-id="@character.KittyId" class="btn btn-info">KittyDelete</a>
+						@if (ViewBag.Name == "admin")
+						{
+							<a asp-action="details" asp-controller="Kittys" asp-route-id="@character.KittyId" class="btn btn-info">KittyDetails</a>
+							<br />
+							<a asp-action="delete" asp-controller="Kittys" asp-route-id="@character.KittyId" class="btn btn-info">KittyDelete</a>					
+						}
 					</td>
 				</tr>
 				rowNumber++;

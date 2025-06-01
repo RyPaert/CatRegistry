@@ -15,6 +15,8 @@ namespace CatRegistry.Controllers
 
         public IActionResult Index()
         {
+            var Name = HttpContext.Session.GetString("Name");
+            ViewBag.Name = Name;
             return View();
         }
 

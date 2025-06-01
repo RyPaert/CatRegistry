@@ -19,16 +19,32 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Kittys" asp-action="Index">Kittys</a>
-                        </li>
+                        @if (!string.IsNullOrEmpty(ViewBag.Name))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Kittys" asp-action="Index">Kittys</a>
+                            </li>
+                        }
                     </ul>
+                    @if (!string.IsNullOrEmpty(ViewBag.Name))
+                    {
+                        <div class="nav-item">
+                            <a class="me-2 text-dark"><strong>@ViewBag.Name</strong></a>
+                            <a class="btn btn-sm btn-outline-danger" asp-controller="Accounts" asp-action="Logout">Logout</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="nav-item">
+                            <a class="text-dark" asp-controller="Accounts" asp-action="Login">Login</a>
+                        </div>
+                    }
                 </div>
             </div>
         </nav>

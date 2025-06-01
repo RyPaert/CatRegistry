@@ -11,6 +11,10 @@ builder.Services.AddScoped<IKittyServices, KittyServices>();
 builder.Services.AddScoped<IFileServices, FileServices>();
 builder.Services.AddDbContext<KittyContext>
     (options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(3);
+});
 
 
 var app = builder.Build();
@@ -27,6 +31,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthorization();
 
